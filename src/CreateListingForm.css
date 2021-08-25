@@ -1,0 +1,16 @@
+.CreateListingForm {
+  height: 100vh;
+  width: 100vw;
+  background-image: url(sharebnb_homepage.jpg) ;
+  background-size: cover;
+}
+
+.CreateListingForm form {
+  opacity: .9 ;
+  width: 60%;
+  margin: auto;
+}
+
+.CreateListingForm button {
+  float: right;
+}
