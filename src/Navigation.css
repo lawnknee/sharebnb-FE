@@ -1,0 +1,29 @@
+.Navbar {
+  text-align: center;
+  font-weight: bold;
+  padding: 0;
+  /* border-bottom: 2px solid grey; */
+  margin-bottom: 0 !important;
+}
+
+nav a {
+  padding: 0.5em 0;
+  width: 8em;
+  display: inline-block;
+  color: black;
+  text-decoration: none;
+}
+
+nav a.active {
+  color: black;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: black;
+  text-decoration: none;
+}
+
+.Navbar .navbar-brand a.active {
+  color: black;
+}
