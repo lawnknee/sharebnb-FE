@@ -1,0 +1,12 @@
+.Loading {
+  position: relative;
+  height: 100%;
+}
+
+.Loading-msg {
+  position: absolute;
+  font-size: 200%;
+  margin-top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
