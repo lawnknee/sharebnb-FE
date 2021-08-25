@@ -1,0 +1,20 @@
+.ListingCard-card {
+  color: black;
+  box-shadow: 0px 0px 1px black;
+}
+
+.ListingCard-card:hover {
+  box-shadow: 0px 0px 3px black;
+}
+
+.ListingContainer .ListingCard {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* .card img {
+  position: absolute;
+  width: 50px;
+  right: 10px;
+  top: 12px;
+} */
