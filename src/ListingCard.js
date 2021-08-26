@@ -11,7 +11,6 @@ import { Link } from "react-router-dom";
  */
 
 function ListingCard({ listing }) {
-  console.log(listing);
 
   const {
     id,
