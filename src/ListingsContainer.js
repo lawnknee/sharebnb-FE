@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import SharebnbApi from "./api";
 import Loading from "./Loading";
 import ListingList from "./ListingList";
+import SearchForm from "./SearchForm";
+
 // import SearchForm from "../common/SearchForm";
 
 /** Listing Component: renders page with all listings.
  *
  * On mount, loads all listings from API.
+ * Can search through listings by title.
  * 
  * State:
  *    - listings: array of listing objects like:
@@ -29,13 +32,19 @@ function ListingsContainer() {
       setIsLoading(false);
     }
     fetchListings();
-  },[])
-
+  },[]);
+  
+  async function fetchFilteredListings(title) {
+    const listings = await SharebnbApi.getListingsBySearch(title);
+    setListings(listings);
+    setIsLoading(false);
+  }
 
   if (isLoading) return <Loading />;
 
   return (
     <div className="ListingsContainer container">
+      <SearchForm search={fetchFilteredListings} />
       <ListingList listings={listings} />
     </div>
   )
