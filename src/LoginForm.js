@@ -1,13 +1,12 @@
-import React, { useState, useContext } from "react";
-import { useHistory, Redirect } from "react-router-dom";
-import UserContext from "./userContext";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import "./LoginForm.css";
 
 /** Renders a Login Form to login a user
  *
  *  After submitting form:
  *      - login user
- *      - redirect to all companies
+ *      - redirect to /listings
  *
  *  State:
  *      - formData
@@ -17,18 +16,16 @@ import "./LoginForm.css";
  *      - UserContext
  *
  *  History:
- *      - Redirects to /companies after login
+ *      - Redirects to /listings after login
  *
  *  App -> Routes -> LoginForm
  */
-export default function LoginForm({ login }) {
-  const { currentUser } = useContext(UserContext);
-
+function LoginForm({ login }) {
   const history = useHistory();
   const [formData, setFormData] = useState({});
-  const [errors, setErrors] = useState([]);
+  const [formErrors, setFormErrors] = useState([]);
 
-  console.debug(`LoginForm`, formData, currentUser, errors);
+  console.debug(`LoginForm`, formData, formErrors);
 
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -42,46 +39,40 @@ export default function LoginForm({ login }) {
     evt.preventDefault();
     try {
       await login(formData);
-      history.push("/companies");
     } catch (errs) {
-      setErrors([...errs]);
+      console.log("errors is:", errs);
+      setFormErrors([...errs]);
     }
-  }
-
-  if (currentUser) {
-    return <Redirect to="/" />;
+    history.push("/listings");
   }
 
   return (
-    <div className="LoginForm pt-2">
-      <form
-        onSubmit={handleSubmit}
-        className="LoginForm-form container"
-      >
-        {errors.length > 0 &&
-          errors.map((error) => (
+    <div className="LoginForm pt-5">
+      <form onSubmit={handleSubmit} className="LoginForm-form container">
+        {formErrors.length > 0 &&
+          formErrors.map((error) => (
             <div key={error} className="alert alert-danger">
               <strong>{error}</strong>
             </div>
           ))}
-        <h1>Log In</h1>
         <div className="LoginForm-card card">
+          <h1>Log In</h1>
           <div className="LoginForm-card card-body">
             <div className="form-group mb-4">
-              <label htmlFor="login-user">Username: </label>
+              <label htmlFor="email">Email: </label>
               <input
-                id="login-user"
-                name="username"
+                id="email"
+                name="email"
                 className="form-control"
                 onChange={handleChange}
-                value={formData.username || ""}
-                aria-label="Username"
+                value={formData.email || ""}
+                aria-label="Email"
               />
             </div>
             <div className="form-group">
-              <label htmlFor="login-password">Password: </label>
+              <label htmlFor="password">Password: </label>
               <input
-                id="login-password"
+                id="password"
                 name="password"
                 type="password"
                 className="form-control"
@@ -100,3 +91,5 @@ export default function LoginForm({ login }) {
     </div>
   );
 }
+
+export default LoginForm;

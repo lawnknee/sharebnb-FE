@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "./CreateListingForm.css";
-import UploadImageToS3WithNativeSdk from "./UploadImageToS3WIthNativeSdk";
 
-/** Renders a form to post a new listing
+/** Renders a form to post a new listing.
+ *  
+ *  Form encoding type: multipart/form-data
  *
  *  After submitting form:
  *      - calls parent func to update API with new listing
@@ -46,24 +47,35 @@ function CreateListingForm({ create }) {
 
   /** Handle form submit:
    *
-   *  Calls create func prop and, if successful, redirects to /listings
+   *  Calls create func prop and, if successful, redirects to /listings.
+   * 
+   *  Form uses multipart/form-data content-type so the browser will
+   *    create a "multipart" message where each part will contain a
+   *    field of the form. A multipart message will consist of text input
+   *    and file input, allowing us to submit the form and file.
    */
 
   async function handleSubmit(evt) {
     evt.preventDefault();
     formData['host_id'] = 1;
 
-    console.log("this is formData:", formData)
-
-    // TODO: why we had to instantiate FormData class because axios
-    // FormData class encodes our form for files to be sent - multipart/form-data
+    /** To send multipart/form-data with Axios, we need to create a form,
+     * and append the file to it. We don't have access to the FormData 
+     * interface in Node.js as we do in the browser, so we will be using 
+     * the FormData class. 
+     * 
+     * FormData() converts the data input in the form into key-value pairs 
+     * to create a multipart/form-data object. 
+     * 
+     * First, we create a new instance and use append(name, value) method
+     * to add a file and additional fields.
+     * 
+     */
     let data = new FormData();
 
     for (let key in formData) {
       data.append(key, formData[key]);
     }
-
-    console.log("new FormData instance:", data);
 
     try {
       await create(data);

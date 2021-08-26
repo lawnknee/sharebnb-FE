@@ -1,7 +1,7 @@
 import "./Homepage.css";
-// import { Link } from "react-router-dom";
-// import UserContext from "./userContext";
-// import { useContext } from "react";
+import { Link } from "react-router-dom";
+import UserContext from "./UserContext";
+import { useContext } from "react";
 
 /** Renders the homepage of Sharebnb.
  *
@@ -12,25 +12,33 @@ import "./Homepage.css";
  *      - UserContext
  *
  *  Routes -> Homepage
+ *  Routed at /
  */
 
 function Homepage() {
-  // const { currentUser } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
 
-  // if (!currentUser) {
   return (
     <div className="Homepage">
       <div className="Homepage-body pt-5">
         <div className="Homepage-msg card homepage-card col-6 offset-3 py-3">
           <h1 className="Homepage-msg pt-4">Sharebnb</h1>
-          <h4 className="Homepage-submsg mt-2">where sharing is caring and any space can be your space</h4>
-          <h5 className="mt-2">Book today!</h5>
-          {/* <Link to="/signup">
-              <button className="btn btn-primary me-2">Sign Up</button>
-            </Link>
-            <Link to="/login">
-              <button className="btn btn-primary">Login</button>
-            </Link> */}
+          <h4 className="Homepage-submsg mt-2">
+            where sharing is caring and any space can be <span style={{color:"#eb6864"}}>your</span> space
+          </h4>
+          {currentUser ? (
+            <h2 className="mt-5">Welcome back, {currentUser.firstName} !</h2>
+          ) : (
+            <div>
+              <h5 className="mt-3 mb-3">Book today!</h5>
+              <Link to="/signup">
+                <button className="btn btn-primary me-2">Sign Up</button>
+              </Link>
+              <Link to="/login">
+                <button className="btn btn-primary">Login</button>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </div>
