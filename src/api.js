@@ -17,9 +17,7 @@ class SharebnbApi {
 
     const url = `${BASE_URL}/${endpoint}`;
     // const headers = { Authorization: `Bearer ${Sharebnb.token}` };
-    const params = (method === "get")
-        ? data
-        : {};
+    const params = method === "get" ? data : {};
 
     try {
       return (await axios({ url, method, data, params })).data;
@@ -35,12 +33,12 @@ class SharebnbApi {
   /** Registering a new user. */
   static async register(user) {
     let res = await this.request(`auth/register`, user, "post");
-    return res.token
+    return res.token;
   }
 
   /** Get token after successful login. */
   static async login(email, password) {
-    let res = await this.request(`auth/token`, { email, password}, "post");
+    let res = await this.request(`auth/token`, { email, password }, "post");
     return res.token;
   }
 
@@ -50,10 +48,15 @@ class SharebnbApi {
     return res.user;
   }
 
-  /** Get all listings. (TODO: optional search term of listing title). */
-
+  /** Get all listings. */
   static async getListings() {
     let res = await this.request(`listings`);
+    return res.listings;
+  }
+
+  /** Get all listings filtered by title. */
+  static async getListingsBySearch(title) {
+    let res = await this.request(`listings/search?q=${title}`);
     return res.listings;
   }
 
@@ -63,14 +66,16 @@ class SharebnbApi {
     return res.listing;
   }
 
-  /** Post a new listing. */
+  /** Post a new listing.
+   * Requires additional header for Content-Type of multipart/form-data.
+   */
   static async createListing(data) {
     console.log("data in SharebnbApi:", data);
 
     let res = await axios.post(`${BASE_URL}/listings`, data, {
       headers: {
-        'Content-Type': 'multipart/form-data'
-      }
+        "Content-Type": "multipart/form-data",
+      },
     });
 
     return res.listing;
