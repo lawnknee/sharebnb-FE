@@ -28,7 +28,7 @@ function CreateListingForm({ create }) {
     city: "",
     state: "",
     country: "",
-    photo_url: "",
+    photoFile: null,
     price: "",
     details: "",
   });
@@ -53,8 +53,20 @@ function CreateListingForm({ create }) {
     evt.preventDefault();
     formData['host_id'] = 1;
 
+    console.log("this is formData:", formData)
+
+    // TODO: why we had to instantiate FormData class because axios
+    // FormData class encodes our form for files to be sent - multipart/form-data
+    let data = new FormData();
+
+    for (let key in formData) {
+      data.append(key, formData[key]);
+    }
+
+    console.log("new FormData instance:", data);
+
     try {
-      await create(formData);
+      await create(data);
     } catch (err) {
       setFormErrors(err);
     }
@@ -65,7 +77,13 @@ function CreateListingForm({ create }) {
 
   function handleChange(evt) {
     const { name, value } = evt.target;
-    setFormData((data) => ({ ...data, [name]: value }));
+    const photoFile = evt.target.files;
+
+    if (photoFile) {
+      setFormData((data) => ({ ...data, [name]: value, photoFile: photoFile[0] }));
+    } else {
+      setFormData((data) => ({ ...data, [name]: value }));
+    }    
   }
 
   return (
@@ -73,6 +91,7 @@ function CreateListingForm({ create }) {
       <form
         onSubmit={handleSubmit}
         className="CreateListingForm-form container"
+        encType="multipart/form-data"
       >
         {formErrors.length > 0 &&
           formErrors.map((error) => (
@@ -178,21 +197,21 @@ function CreateListingForm({ create }) {
               />
             </div>
 
-            {/* <div className="form-group mb-4">
-              <label htmlFor="photo_url" className="form-label">
+            <div className="form-group mb-4">
+              <label htmlFor="photoFile" className="form-label">
                 Upload a photo:
               </label>
               <input
-                id="photo_url"
-                name="photo_url"
+                id="photoFile"
+                name="photoFile"
                 type="file"
                 className="form-control"
                 onChange={handleChange}
-                value={formData.photo_url}
+                // value={formData.photoFile}
               />
-            </div> */}
+            </div>
 
-            <UploadImageToS3WithNativeSdk />
+            {/* <UploadImageToS3WithNativeSdk /> */}
 
             <button className="btn btn-primary" type="submit">
               Create
