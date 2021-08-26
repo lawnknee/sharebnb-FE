@@ -32,16 +32,47 @@ class SharebnbApi {
 
   // Individual API routes
 
-  /** Get all listings (optional search term of listing title).*/
+  /** Registering a new user. */
+  static async register(user) {
+    let res = await this.request(`auth/register`, user, "post");
+    return res.token
+  }
+
+  /** Get token after successful login. */
+  static async login(email, password) {
+    let res = await this.request(`auth/token`, { email, password}, "post");
+    return res.token;
+  }
+
+  /** Get a user. */
+  static async getUser(id) {
+    let res = await this.request(`users/${id}`);
+    return res.user;
+  }
+
+  /** Get all listings. (TODO: optional search term of listing title). */
 
   static async getListings() {
     let res = await this.request(`listings`);
     return res.listings;
   }
 
-  /** Post a new listing */
+  /** Get a listing by id. */
+  static async getListing(id) {
+    let res = await this.request(`listings/${id}`);
+    return res.listing;
+  }
+
+  /** Post a new listing. */
   static async createListing(data) {
-    let res = await this.request(`listings`, data, "post");
+    console.log("data in SharebnbApi:", data);
+
+    let res = await axios.post(`${BASE_URL}/listings`, data, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
+
     return res.listing;
   }
 }
