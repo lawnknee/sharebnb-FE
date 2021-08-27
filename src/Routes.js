@@ -20,7 +20,7 @@ import PrivateRoute from "./PrivateRoute";
  *  App -> Routes
  */
 
-function Routes({ create, login, register}) {
+function Routes({ create, login, register, sendMessage }) {
   console.debug(
     "Routes",
     `login=${typeof login}`,
@@ -47,7 +47,7 @@ function Routes({ create, login, register}) {
       </Route>
 
       <Route exact path="/listing/:id">
-        <ListingDetails />
+        <ListingDetails sendMessage={sendMessage} />
       </Route>
 
       <PrivateRoute exact path="/listings/create">
@@ -55,7 +55,7 @@ function Routes({ create, login, register}) {
       </PrivateRoute>
 
      <Route><NotFound /></Route>
-     
+
     </Switch>
   );
 }
