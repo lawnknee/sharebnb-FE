@@ -70,8 +70,6 @@ class SharebnbApi {
    * Requires additional header for Content-Type of multipart/form-data.
    */
   static async createListing(data) {
-    console.log("data in SharebnbApi:", data);
-
     let res = await axios.post(`${BASE_URL}/listings`, data, {
       headers: {
         "Content-Type": "multipart/form-data",
@@ -79,6 +77,11 @@ class SharebnbApi {
     });
 
     return res.listing;
+  }
+
+  /** Send a message. */
+  static async sendMessage(data) {
+    await this.request(`messages`, data, "post");
   }
 }
 
