@@ -87,6 +87,13 @@ function App() {
     await SharebnbApi.createListing(listing);
   }
 
+  /** Send a message. 
+   * data object like { fromUserId, toUserId, body}
+  */
+  async function sendMessage(data) {
+    await SharebnbApi.sendMessage(data);
+  }
+
   if (isLoading) return <Loading />;
 
   return (
@@ -95,7 +102,7 @@ function App() {
         <UserContext.Provider value={{ currentUser, setCurrentUser }}>
         <div className="App">
           <Navigation logout={logout} />
-          <Routes login={login} register={register} create={createListing} />
+          <Routes login={login} register={register} create={createListing} sendMessage={sendMessage} />
         </div>
         </UserContext.Provider>
       </BrowserRouter>
