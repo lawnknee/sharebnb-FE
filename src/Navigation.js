@@ -24,6 +24,11 @@ function Navigation({ logout }) {
           </NavLink>
         </div>
         <div className="me-0 bd-highlight">
+          <NavLink exact to="/messages">
+            Messages
+          </NavLink>
+        </div>
+        <div className="me-0 bd-highlight">
           <NavLink exact to="/listings">
             Listings
           </NavLink>

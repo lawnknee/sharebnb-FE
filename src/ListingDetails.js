@@ -17,6 +17,7 @@ import UserContext from "./UserContext";
 function ListingDetails({ sendMessage }) {
   const { id } = useParams();
   const { currentUser } = useContext(UserContext);
+
   const [isLoading, setIsLoading] = useState(true);
   const [listing, setListing] = useState(null);
   const [formData, setFormData] = useState({
@@ -26,12 +27,16 @@ function ListingDetails({ sendMessage }) {
 
   useEffect(
     function getListingDetails() {
-      async function fetchListing(id) {
-        const listing = await SharebnbApi.getListing(id);
-        setListing(listing);
-        setIsLoading(false);
+      let mounted = true;
+      if (mounted) {
+        async function fetchListing(id) {
+          const listing = await SharebnbApi.getListing(id);
+          setListing(listing);
+          setIsLoading(false);
+        }
+        fetchListing(id);
       }
-      fetchListing(id);
+      return () => (mounted = false);
     },
     [id]
   );
@@ -45,12 +50,12 @@ function ListingDetails({ sendMessage }) {
       toUserId: listing.hostId,
     };
 
-    try{
+    try {
       await sendMessage(data);
     } catch (err) {
       setAlert(err);
     }
-    document.getElementById("messageModal").modal('hide');
+    // document.getElementById("messageModal").modal('hide');
     setAlert([...alert, "Message sent!"]);
   }
 
@@ -64,8 +69,8 @@ function ListingDetails({ sendMessage }) {
   return (
     <div className="ListingDetails container pt-5">
       <div className="ListingDetails-header">
-      {alert.length > 0 &&
-          alert.map( a => (
+        {alert.length > 0 &&
+          alert.map((a) => (
             <div key={a} className="alert alert-info">
               <strong>{a}</strong>
             </div>
@@ -167,7 +172,11 @@ function ListingDetails({ sendMessage }) {
                         >
                           Close
                         </button>
-                        <button type="submit" data-bs-dismiss="modal" className="btn btn-primary" >
+                        <button
+                          type="submit"
+                          data-bs-dismiss="modal"
+                          className="btn btn-primary"
+                        >
                           Send message
                         </button>
                       </div>

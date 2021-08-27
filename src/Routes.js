@@ -8,6 +8,7 @@ import LoginForm from "./LoginForm.js";
 import SignupForm from "./SignupForm.js";
 import ListingDetails from "./ListingDetails.js";
 import PrivateRoute from "./PrivateRoute";
+import Messages from "./Messages.js";
 
 /** Routes for Sharebnb App
  * 
@@ -52,6 +53,10 @@ function Routes({ create, login, register, sendMessage }) {
 
       <PrivateRoute exact path="/listings/create">
         <CreateListingForm create={create}/>
+      </PrivateRoute>
+
+      <PrivateRoute exact path="/messages">
+        <Messages />
       </PrivateRoute>
 
      <Route><NotFound /></Route>

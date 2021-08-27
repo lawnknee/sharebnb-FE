@@ -94,6 +94,11 @@ function App() {
     await SharebnbApi.sendMessage(data);
   }
 
+  /** Get all messages for a user by userId. */
+  // async function getMessages(currentUser) {
+  //   let messages = SharebnbApi.getMessages(currentUser.id);
+  // }
+
   if (isLoading) return <Loading />;
 
   return (
