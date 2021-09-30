@@ -10,7 +10,7 @@ nav a {
   padding: 0.5em 0;
   width: 8em;
   display: inline-block;
-  color: black;
+  color: white;
   text-decoration: none;
 }
 
@@ -25,5 +25,5 @@ nav a:hover {
 }
 
 .Navbar .navbar-brand a.active {
-  color: black;
+  color: white;
 }

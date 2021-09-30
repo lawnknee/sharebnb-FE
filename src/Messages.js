@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import SharebnbApi from "./api";
 import UserContext from "./UserContext";
-import "./Messages.css"
 
 /**  Messages Component
  *
