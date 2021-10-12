@@ -41,8 +41,8 @@ function App() {
           SharebnbApi.token = token;
           localStorage.token = token;
 
-          let { id } = jwt.decode(token);
-          let user = await SharebnbApi.getUser(id);
+          let { username } = jwt.decode(token);
+          let user = await SharebnbApi.getUser(username);
 
           setCurrentUser(user);
         }
@@ -55,7 +55,7 @@ function App() {
 
   /** Register user:
    *    user object like
-   *      { firstName, lastName, email, password}
+   *      { firstName, lastName, email, username, password}
    */
   async function register(user) {
     let token = await SharebnbApi.register(user);
@@ -63,10 +63,10 @@ function App() {
   }
 
   /** Login user:
-   *  Takes object like { email, password }
+   *  Takes object like { username, password }
    */
-  async function login({ email, password }) {
-    let token = await SharebnbApi.login(email, password);
+  async function login({ username, password }) {
+    let token = await SharebnbApi.login(username, password);
     setToken(token);
   }
 
