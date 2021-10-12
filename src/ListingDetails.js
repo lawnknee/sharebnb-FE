@@ -77,10 +77,10 @@ function ListingDetails({ sendMessage }) {
           ))}
         <h2 className="text-start">{listing.title}</h2>
         <p className="text-start text-muted mb-1">
-          {listing.city}, {listing.state}, {listing.country}
+          {listing.location}
         </p>
         <img
-          src={listing.photoUrl}
+          src={listing.image}
           alt={listing.title}
           className="ListingDetails-image rounded img-fluid"
         />
@@ -89,7 +89,7 @@ function ListingDetails({ sendMessage }) {
         <div className="row">
           <div className="col">
             <h3 className="text-start">
-              {listing.details} hosted by {listing.host.firstName}{" "}
+              {listing.description} hosted by {listing.host.firstName}{" "}
               {listing.host.lastName}
             </h3>
           </div>

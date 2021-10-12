@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
  */
 
 function ListingCard({ listing }) {
-  const { id, title, city, state, photoUrl, price } = listing;
+  const { id, title, location, image, price } = listing;
 
   return (
     <div className="ListingCard mb-4">
@@ -20,9 +20,9 @@ function ListingCard({ listing }) {
           <div className="card-body">
             <h5 className="card-title">{title}</h5>
           </div>
-          {photoUrl && <img src={photoUrl} alt={title} className="img-fluid"></img>}
+          {image && <img src={image} alt={title} className="img-fluid"></img>}
           <p className="card-text text-start ps-2">
-            {city}, {state}
+            {location}
             <br /> ${price} / night
           </p>
         </div>
