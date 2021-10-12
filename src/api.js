@@ -37,14 +37,14 @@ class SharebnbApi {
   }
 
   /** Get token after successful login. */
-  static async login(email, password) {
-    let res = await this.request(`auth/token`, { email, password }, "post");
+  static async login(username, password) {
+    let res = await this.request(`auth/login`, { username, password }, "post");
     return res.token;
   }
 
   /** Get a user. */
-  static async getUser(id) {
-    let res = await this.request(`users/${id}`);
+  static async getUser(username) {
+    let res = await this.request(`users/${username}`);
     return res.user;
   }
 
