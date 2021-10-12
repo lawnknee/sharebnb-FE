@@ -53,14 +53,14 @@ function SignupForm({ register }) {
           <h1>Sign up</h1>
           <div className="SignupForm-card card-body">
             <div className="form-group mb-4">
-              <label htmlFor="email">Email: </label>
+              <label htmlFor="username">Username: </label>
               <input
-                id="email"
-                name="email"
+                id="username"
+                name="username"
                 className="form-control"
                 onChange={handleChange}
-                value={formData.email || ""}
-                aria-label="Email"
+                value={formData.username || ""}
+                aria-label="Username"
               />
             </div>
             <div className="form-group mb-4">
@@ -95,6 +95,17 @@ function SignupForm({ register }) {
                 onChange={handleChange}
                 value={formData.lastName || ""}
                 aria-label="last-name"
+              />
+            </div>
+            <div className="form-group mb-4">
+              <label htmlFor="email">Email: </label>
+              <input
+                id="email"
+                name="email"
+                className="form-control"
+                onChange={handleChange}
+                value={formData.email || ""}
+                aria-label="Email"
               />
             </div>
             <button className="btn btn-primary mt-4" type="submit">

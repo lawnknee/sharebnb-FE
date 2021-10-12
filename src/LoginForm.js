@@ -39,11 +39,11 @@ function LoginForm({ login }) {
     evt.preventDefault();
     try {
       await login(formData);
+      history.push("/listings");
     } catch (errs) {
       console.log("errors is:", errs);
       setFormErrors([...errs]);
     }
-    history.push("/listings");
   }
 
   return (
@@ -59,14 +59,14 @@ function LoginForm({ login }) {
           <h1>Log In</h1>
           <div className="LoginForm-card card-body">
             <div className="form-group mb-4">
-              <label htmlFor="email">Email: </label>
+              <label htmlFor="username">Username: </label>
               <input
-                id="email"
-                name="email"
+                id="username"
+                name="username"
                 className="form-control"
                 onChange={handleChange}
-                value={formData.email || ""}
-                aria-label="Email"
+                value={formData.username || ""}
+                aria-label="Username"
               />
             </div>
             <div className="form-group">
