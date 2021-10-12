@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import "./Navigation.css";
 import React, { useContext } from "react";
 import UserContext from "./UserContext";
@@ -39,9 +39,9 @@ function Navigation({ logout }) {
           </NavLink>
         </div>
         <div className="me-0 bd-highlight">
-          <NavLink exact to="/" onClick={logout}>
+          <Link to="/" onClick={logout}>
             Log out
-          </NavLink>
+          </Link>
         </div>
       </nav>
     );
