@@ -89,10 +89,10 @@ function CreateListingForm({ create }) {
 
   function handleChange(evt) {
     const { name, value } = evt.target;
-    const photoFile = evt.target.files;
+    const file = evt.target.files;
 
-    if (photoFile) {
-      setFormData((data) => ({ ...data, [name]: value, photoFile: photoFile[0] }));
+    if (file) {
+      setFormData((data) => ({ ...data, [name]: value, file: file[0] }));
     } else {
       setFormData((data) => ({ ...data, [name]: value }));
     }    
@@ -222,8 +222,6 @@ function CreateListingForm({ create }) {
                 // value={formData.photoFile}
               />
             </div>
-
-            {/* <UploadImageToS3WithNativeSdk /> */}
 
             <button className="btn btn-primary" type="submit">
               Create
