@@ -1,9 +1,5 @@
-body {
-  background: #f6f9fc;
-}
-
 .Messages {
-  height: 110vh;
+  height: 100vh;
   width: 100vw;
   background-image: url(messages_background.jpg);
   background-size: cover;
@@ -36,6 +32,7 @@ a {
 
 .inbox-card {
   opacity: 0.8;
+  height: 80vh;
 }
 /* @media screen and (max-width: 575px) {
   .msg-img {

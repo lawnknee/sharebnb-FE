@@ -76,10 +76,10 @@ export default function Conversation({ sendMessage }) {
       <div className="Conversation-body container">
         <div className="Conversation-row row justify-content-center">
           <div className="col-md-6">
-            <div className="card conversation-card card-white mb-5 mt-5 overflow-auto">
-              <div className="card-heading clearfix border-bottom mb-4">
+              <div className="card-heading clearfix border-bottom mt-5 mb-4">
                 <h4 className="card-title">Conversation with {otherUser}</h4>
               </div>
+            <div className="card conversation-card card-white mb-5 mt-5 overflow-auto">
               <div className="card-body">
                 <ul className="list-unstyled message">
                   {conversation.map((m) => (
