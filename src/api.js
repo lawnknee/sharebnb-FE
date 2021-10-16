@@ -80,14 +80,25 @@ class SharebnbApi {
   }
 
   /** Send a message. */
-  static async sendMessage(data) {
-    await this.request(`messages`, data, "post");
+  static async sendMessage({ text, username, toUser }) {
+    await this.request(
+      `users/${username}/messages/${toUser}`,
+      { text },
+      "post"
+    );
   }
 
   /** Get all messages sent to a user. */
-  static async getMessages(userId) {
-    let res = await this.request(`messages/to/${userId}`);
-    return res.message;
+  static async getMessages(username) {
+    let res = await this.request(`users/${username}/messages`);
+    return res.users;
+  }
+
+  /** Get conversation messages between logged in user and other user. */
+  static async getConversation(currentUser, otherUser) {
+    let res = await this.request(`users/${currentUser}/messages/${otherUser}`);
+    console.log(res);
+    return res.messages;
   }
 }
 
