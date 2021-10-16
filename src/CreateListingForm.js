@@ -1,4 +1,3 @@
-import react from "react";
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import "./CreateListingForm.css";

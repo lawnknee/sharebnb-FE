@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useParams } from "react-router";
-import { useState, useEffect, useReducer } from "react";
+import { useState, useEffect } from "react";
 import Loading from "./Loading";
 import SharebnbApi from "./api";
 import UserContext from "./UserContext";
