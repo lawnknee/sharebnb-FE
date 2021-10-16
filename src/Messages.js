@@ -37,7 +37,7 @@ function Messages() {
       <div className="Messages-body container">
         <div className="Messages-row row justify-content-center pt-5">
           <div className="col-md-6">
-            <div className="inbox-card card card-white mb-5">
+            <div className="inbox-card card card-white mb-5 overflow-auto">
               <div className="card-heading clearfix border-bottom mb-4">
                 <h4 className="card-title">Inbox</h4>
               </div>

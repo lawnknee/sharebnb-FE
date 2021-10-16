@@ -1,5 +1,5 @@
 .Conversation {
-  height: 110vh;
+  height: 100vh;
   width: 100vw;
   background-image: url(messages_background.jpg);
   background-size: cover;
@@ -12,4 +12,6 @@
 .conversation-card {
   opacity: 0.9;
   height: 80vh;
+  display:flex; 
+  flex-direction:column-reverse;
 }
