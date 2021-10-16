@@ -21,7 +21,7 @@ function ListingDetails({ sendMessage }) {
   const [isLoading, setIsLoading] = useState(true);
   const [listing, setListing] = useState(null);
   const [formData, setFormData] = useState({
-    body: "",
+    text: "",
   });
   const [alert, setAlert] = useState([]);
 
@@ -46,8 +46,8 @@ function ListingDetails({ sendMessage }) {
 
     let data = {
       ...formData,
-      fromUserId: currentUser.id,
-      toUserId: listing.hostId,
+      username: currentUser.username,
+      toUser: listing.host.username,
     };
 
     try {
@@ -76,9 +76,7 @@ function ListingDetails({ sendMessage }) {
             </div>
           ))}
         <h2 className="text-start">{listing.title}</h2>
-        <p className="text-start text-muted mb-1">
-          {listing.location}
-        </p>
+        <p className="text-start text-muted mb-1">{listing.location}</p>
         <img
           src={listing.image}
           alt={listing.title}
@@ -142,9 +140,10 @@ function ListingDetails({ sendMessage }) {
                           type="text"
                           className="form-control"
                           id="sender-name"
-                          value={currentUser.firstName}
+                          value={currentUser.username}
                           onChange={handleChange}
                           required
+                          readOnly
                         />
                       </div>
                       <div className="mb-3">
@@ -155,11 +154,11 @@ function ListingDetails({ sendMessage }) {
                           Message:
                         </label>
                         <textarea
-                          name="body"
+                          name="text"
                           className="form-control"
                           id="message-text"
                           onChange={handleChange}
-                          value={formData.body}
+                          value={formData.text}
                           rows="5"
                           required
                         />
