@@ -81,11 +81,13 @@ class SharebnbApi {
 
   /** Send a message. */
   static async sendMessage({ text, username, toUser }) {
-    await this.request(
+    let res = await this.request(
       `users/${username}/messages/${toUser}`,
       { text },
       "post"
     );
+    console.log("res is", res.message);
+    return res.message;
   }
 
   /** Get all messages sent to a user. */

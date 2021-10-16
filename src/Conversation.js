@@ -50,6 +50,7 @@ export default function Conversation({ sendMessage }) {
 
   async function handleSubmit(evt) {
     evt.preventDefault();
+    console.log("evt", evt);
 
     let data = {
       ...formData,
@@ -58,21 +59,28 @@ export default function Conversation({ sendMessage }) {
     };
 
     try {
-      await sendMessage(data);
+      const newMessage = await sendMessage(data);
+      console.log("new message is", newMessage);
+      setConversation((oldConversation) => [...oldConversation, newMessage]);
+      setAlert(["Message sent!"]);
+      for (let input of evt.target) {
+        input.value = "";
+      }
     } catch (err) {
       setAlert(err);
     }
-    setAlert(["Message sent!"]);
   }
 
   if (isLoading) return <Loading />;
+
+  console.log("conversation => ", conversation);
 
   return (
     <div className="Conversation">
       <div className="Conversation-body container">
         <div className="Conversation-row row justify-content-center">
           <div className="col-md-6">
-            <div className="card conversation-card card-white mb-5 mt-5">
+            <div className="card conversation-card card-white mb-5 mt-5 overflow-auto">
               <div className="card-heading clearfix border-bottom mb-4">
                 <h4 className="card-title">Conversation with {otherUser}</h4>
               </div>
@@ -102,7 +110,7 @@ export default function Conversation({ sendMessage }) {
                   </form>
                   {alert.length > 0 &&
                     alert.map((a) => (
-                      <div key={a} className="mt-3 alert alert-info">
+                      <div key={a} className="mt-5 alert alert-info">
                         <strong>{a}</strong>
                       </div>
                     ))}

@@ -96,7 +96,8 @@ function App() {
    * data object like { fromUserId, toUserId, body}
    */
   async function sendMessage(data) {
-    await SharebnbApi.sendMessage(data);
+    let newMessage = await SharebnbApi.sendMessage(data);
+    return newMessage;
   }
 
   /** Get all messages for a user by userId. */
