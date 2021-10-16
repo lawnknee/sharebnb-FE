@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import "./CreateListingForm.css";
 
 /** Renders a form to post a new listing.
- *  
+ *
  *  Form encoding type: multipart/form-data
  *
  *  After submitting form:
@@ -26,12 +26,10 @@ function CreateListingForm({ create }) {
   const history = useHistory();
   const [formData, setFormData] = useState({
     title: "",
-    city: "",
-    state: "",
-    country: "",
-    photoFile: null,
+    location: "",
+    image: null,
     price: "",
-    details: "",
+    description: "",
   });
   const [formErrors, setFormErrors] = useState([]);
 
@@ -48,7 +46,7 @@ function CreateListingForm({ create }) {
   /** Handle form submit:
    *
    *  Calls create func prop and, if successful, redirects to /listings.
-   * 
+   *
    *  Form uses multipart/form-data content-type so the browser will
    *    create a "multipart" message where each part will contain a
    *    field of the form. A multipart message will consist of text input
@@ -57,19 +55,19 @@ function CreateListingForm({ create }) {
 
   async function handleSubmit(evt) {
     evt.preventDefault();
-    formData['host_id'] = 1;
+    // formData["username"] = 1; TODO: Figure out later
 
     /** To send multipart/form-data with Axios, we need to create a form,
-     * and append the file to it. We don't have access to the FormData 
-     * interface in Node.js as we do in the browser, so we will be using 
-     * the FormData class. 
-     * 
-     * FormData() converts the data input in the form into key-value pairs 
-     * to create a multipart/form-data object. 
-     * 
+     * and append the file to it. We don't have access to the FormData
+     * interface in Node.js as we do in the browser, so we will be using
+     * the FormData class.
+     *
+     * FormData() converts the data input in the form into key-value pairs
+     * to create a multipart/form-data object.
+     *
      * First, we create a new instance and use append(name, value) method
      * to add a file and additional fields.
-     * 
+     *
      */
     let data = new FormData();
 
@@ -92,10 +90,10 @@ function CreateListingForm({ create }) {
     const file = evt.target.files;
 
     if (file) {
-      setFormData((data) => ({ ...data, [name]: value, file: file[0] }));
+      setFormData((data) => ({ ...data, [name]: value, image: file[0] }));
     } else {
       setFormData((data) => ({ ...data, [name]: value }));
-    }    
+    }
   }
 
   return (
@@ -130,44 +128,16 @@ function CreateListingForm({ create }) {
               />
             </div>
             <div className="form-group mb-4">
-              <label htmlFor="city" className="form-label">
-                City:{" "}
+              <label htmlFor="location" className="form-label">
+                Location:{" "}
               </label>
               <input
-                id="city"
-                name="city"
+                id="location"
+                name="location"
                 className="form-control"
                 onChange={handleChange}
-                value={formData.city || ""}
-                aria-label="Listing city"
-                required
-              />
-            </div>
-            <div className="form-group mb-4">
-              <label htmlFor="state" className="form-label">
-                State:{" "}
-              </label>
-              <input
-                id="state"
-                name="state"
-                className="form-control"
-                onChange={handleChange}
-                value={formData.state || ""}
-                aria-label="Listing state"
-                required
-              />
-            </div>
-            <div className="form-group mb-4">
-              <label htmlFor="country" className="form-label">
-                Country:{" "}
-              </label>
-              <input
-                id="country"
-                name="country"
-                className="form-control"
-                onChange={handleChange}
-                value={formData.country || ""}
-                aria-label="Listing country"
+                value={formData.location || ""}
+                aria-label="Listing location"
                 required
               />
             </div>
@@ -193,33 +163,33 @@ function CreateListingForm({ create }) {
               </div>
             </div>
             <div className="form-group mb-4">
-              <label htmlFor="details" className="form-label">
-                Listing details:{" "}
+              <label htmlFor="description" className="form-label">
+                Listing description:{" "}
               </label>
               <input
-                id="details"
-                name="details"
+                id="description"
+                name="description"
                 type="textarea"
                 rows="5"
                 className="form-control"
                 onChange={handleChange}
-                value={formData.details || ""}
-                aria-label="Listing details"
+                value={formData.description || ""}
+                aria-label="Listing description"
                 required
               />
             </div>
 
             <div className="form-group mb-4">
-              <label htmlFor="photoFile" className="form-label">
+              <label htmlFor="image" className="form-label">
                 Upload a photo:
               </label>
               <input
-                id="photoFile"
-                name="photoFile"
+                id="image"
+                name="image"
                 type="file"
                 className="form-control"
                 onChange={handleChange}
-                // value={formData.photoFile}
+                // value={formData.image}
               />
             </div>
 
