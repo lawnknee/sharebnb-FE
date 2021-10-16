@@ -37,15 +37,15 @@ function CreateListingForm({ create }) {
 
   const { currentUser } = useContext(UserContext);
 
-  console.debug(
-    "CreateListingForm",
-    "Create=",
-    typeof create,
-    "formData=",
-    formData,
-    "formErrors",
-    formErrors
-  );
+  // console.debug(
+  //   "CreateListingForm",
+  //   "Create=",
+  //   typeof create,
+  //   "formData=",
+  //   formData,
+  //   "formErrors",
+  //   formErrors
+  // );
 
   /** Handle form submit:
    *

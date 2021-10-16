@@ -23,11 +23,11 @@ import Conversation from "./Conversation.js";
  */
 
 function Routes({ create, login, register, sendMessage }) {
-  console.debug(
-    "Routes",
-    `login=${typeof login}`,
-    `register=${typeof register}`
-  );
+  // console.debug(
+  //   "Routes",
+  //   `login=${typeof login}`,
+  //   `register=${typeof register}`
+  // );
 
   return (
     <Switch>
