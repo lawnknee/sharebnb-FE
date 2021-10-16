@@ -37,20 +37,25 @@ function App() {
       async function fetchUser() {
         // only fetch a user if a token is stored
         if (token) {
-          // store token from login/register process to SharebnbApi class and localStorage
-          SharebnbApi.token = token;
-          localStorage.token = token;
-
-          let { username } = jwt.decode(token);
-          let user = await SharebnbApi.getUser(username);
-
-          setCurrentUser(user);
+          // If invalid token, log out user
+          try {
+            // store token from login/register process to SharebnbApi class and localStorage
+            SharebnbApi.token = token;
+            localStorage.token = token;
+            let { username } = jwt.decode(token);
+            let user = await SharebnbApi.getUser(username);
+            setCurrentUser(user);
+          } catch {
+            console.log("INVALID TOKEN RECEIVED");
+            logout();
+          }
         }
         setIsLoading(false);
       }
-      setIsLoading(true)
+      setIsLoading(true);
       fetchUser();
-    }, [token]
+    },
+    [token]
   );
 
   /** Register user:
@@ -87,9 +92,9 @@ function App() {
     await SharebnbApi.createListing(listing);
   }
 
-  /** Send a message. 
+  /** Send a message.
    * data object like { fromUserId, toUserId, body}
-  */
+   */
   async function sendMessage(data) {
     await SharebnbApi.sendMessage(data);
   }
@@ -105,10 +110,15 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <UserContext.Provider value={{ currentUser, setCurrentUser }}>
-        <div className="App">
-          <Navigation logout={logout} />
-          <Routes login={login} register={register} create={createListing} sendMessage={sendMessage} />
-        </div>
+          <div className="App">
+            <Navigation logout={logout} />
+            <Routes
+              login={login}
+              register={register}
+              create={createListing}
+              sendMessage={sendMessage}
+            />
+          </div>
         </UserContext.Provider>
       </BrowserRouter>
     </div>
