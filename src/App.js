@@ -30,7 +30,7 @@ import UserContext from "./UserContext";
 function App() {
   const [token, setToken] = useState(localStorage.token);
   const [currentUser, setCurrentUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(
     function storeUser() {
