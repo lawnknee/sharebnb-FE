@@ -60,7 +60,7 @@ function Routes({ create, login, register, sendMessage }) {
       </PrivateRoute>
 
       <PrivateRoute exact path="/conversation/:otherUser">
-        <Conversation />
+        <Conversation sendMessage={sendMessage} />
       </PrivateRoute>
 
       <Route>

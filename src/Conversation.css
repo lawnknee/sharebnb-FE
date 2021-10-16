@@ -1,0 +1,14 @@
+.Conversation {
+  height: 110vh;
+  width: 100vw;
+  background-image: url(messages_background.jpg);
+  background-size: cover;
+}
+
+.message {
+  text-align: left;
+}
+
+.conversation-card {
+  opacity: 0.9;
+}

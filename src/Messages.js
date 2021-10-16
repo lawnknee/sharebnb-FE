@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import SharebnbApi from "./api";
 import UserContext from "./UserContext";
 import Loading from "./Loading";
+import "./Messages.css";
 
 /**  Messages Component
  *
@@ -32,29 +33,31 @@ function Messages() {
   if (isLoading) return <Loading />;
 
   return (
-    <div className="Messages container mt-5">
-      <div className="Messages-row row">
-        <div className="col-md-12">
-          <div className="card card-white mb-5">
-            <div className="card-heading clearfix border-bottom mb-4">
-              <h4 className="card-title">Inbox</h4>
-            </div>
-            <div className="card-body">
-              <ul className="list-unstyled message">
-                {messages.map((u) => (
-                  <li key={u}>
-                    <div className="media align-items-center">
-                      <div className="media-body">
-                        <a href={"/conversation/" + u}>{u}</a>
+    <div className="Messages">
+      <div className="Messages-body container">
+        <div className="Messages-row row justify-content-center pt-5">
+          <div className="col-md-6">
+            <div className="inbox-card card card-white mb-5">
+              <div className="card-heading clearfix border-bottom mb-4">
+                <h4 className="card-title">Inbox</h4>
+              </div>
+              <div className="card-body">
+                <ul className="list-unstyled inbox">
+                  {messages.map((u) => (
+                    <li key={u}>
+                      <div className="media align-items-center">
+                        <div className="media-body">
+                          <a href={"/conversation/" + u}>{u}</a>
+                        </div>
                       </div>
-                    </div>
-                  </li>
-                ))}
-              </ul>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </div>{" "}
     </div>
   );
 }

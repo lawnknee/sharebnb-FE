@@ -1,7 +1,15 @@
-body{
+body {
   background: #f6f9fc;
-  margin-top:20px;}
-.message li {
+}
+
+.Messages {
+  height: 110vh;
+  width: 100vw;
+  background-image: url(messages_background.jpg);
+  background-size: cover;
+}
+
+.inbox li {
   margin-bottom: 20px;
   border-bottom: 1px solid #eee;
   padding-bottom: 20px;
@@ -20,18 +28,21 @@ a {
   border-radius: 50%;
 }
 
-.message li:last-child {
+.inbox li:last-child {
   border-bottom: none;
   margin-bottom: 0;
   padding-bottom: 0;
 }
 
-@media screen and (max-width: 575px) {
+.inbox-card {
+  opacity: 0.8;
+}
+/* @media screen and (max-width: 575px) {
   .msg-img {
-      margin-right: 12px;
+    margin-right: 12px;
   }
   .msg-img img {
-      width: 50px;
+    width: 50px;
   }
 }
 .card {
@@ -45,13 +56,26 @@ a {
   border: none;
   padding: 25px;
 }
-.mb-5, .my-5 {
-  margin-bottom: 3rem!important;
+.mb-5,
+.my-5 {
+  margin-bottom: 3rem !important;
 }
 
-.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: #2b2b2b;
 }
-.h5, h5 {
+.h5,
+h5 {
   font-size: 1.25rem;
-}
+} */ ;
