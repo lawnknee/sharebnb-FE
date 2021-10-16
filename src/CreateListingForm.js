@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import react from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import "./CreateListingForm.css";
+import UserContext from "./UserContext";
 
 /** Renders a form to post a new listing.
  *
@@ -33,6 +35,8 @@ function CreateListingForm({ create }) {
   });
   const [formErrors, setFormErrors] = useState([]);
 
+  const { currentUser } = useContext(UserContext);
+
   console.debug(
     "CreateListingForm",
     "Create=",
@@ -55,7 +59,8 @@ function CreateListingForm({ create }) {
 
   async function handleSubmit(evt) {
     evt.preventDefault();
-    // formData["username"] = 1; TODO: Figure out later
+
+    formData["username"] = currentUser.username;
 
     /** To send multipart/form-data with Axios, we need to create a form,
      * and append the file to it. We don't have access to the FormData
