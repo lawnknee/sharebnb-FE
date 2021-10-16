@@ -10,12 +10,12 @@ import SearchForm from "./SearchForm";
  *
  * On mount, loads all listings from API.
  * Can search through listings by title.
- * 
+ *
  * State:
  *    - listings: array of listing objects like:
  *        [ { id, title, city, price, photoPath, details }, ...]
  *    - isLoading: is listing info currently being pulled from API?
- * 
+ *
  * This is routed to at /listings
  *
  * Routes -> Listings
@@ -32,10 +32,10 @@ function ListingsContainer() {
       setIsLoading(false);
     }
     fetchListings();
-  },[]);
-  
-  async function fetchFilteredListings(title) {
-    const listings = await SharebnbApi.getListingsBySearch(title);
+  }, []);
+
+  async function fetchFilteredListings(location) {
+    const listings = await SharebnbApi.getListingsBySearch(location);
     setListings(listings);
     setIsLoading(false);
   }
@@ -47,7 +47,7 @@ function ListingsContainer() {
       <SearchForm search={fetchFilteredListings} />
       <ListingList listings={listings} />
     </div>
-  )
+  );
 }
 
 export default ListingsContainer;
