@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import SharebnbApi from "./api";
 import UserContext from "./UserContext";
+import Loading from "./Loading";
 
 /**  Messages Component
  *
@@ -12,19 +13,23 @@ import UserContext from "./UserContext";
 function Messages() {
   const { currentUser } = useContext(UserContext);
   const [messages, setMessages] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(
     function getMessages() {
       async function fetchMessages() {
-        let messages = await SharebnbApi.getMessages(currentUser.id);
+        let messages = await SharebnbApi.getMessages(currentUser.username);
         setMessages(messages);
       }
       fetchMessages();
+      setIsLoading(false);
     },
     [currentUser]
   );
 
   console.log(messages);
+
+  if (isLoading) return <Loading />;
 
   return (
     <div className="Messages container mt-5">
@@ -36,13 +41,11 @@ function Messages() {
             </div>
             <div className="card-body">
               <ul className="list-unstyled message">
-                {messages.map((m) => (
-                  <li key={m.id}>
+                {messages.map((u) => (
+                  <li key={u}>
                     <div className="media align-items-center">
                       <div className="media-body">
-                        <h5>{m.from_user.first_name} {m.from_user.last_name} <span className="float-right text-primary">reply</span></h5>
-                        {m.body}
-                        {m.sent_at}
+                        <a href={"/conversation/" + u}>{u}</a>
                       </div>
                     </div>
                   </li>
