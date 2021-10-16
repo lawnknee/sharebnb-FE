@@ -54,9 +54,9 @@ class SharebnbApi {
     return res.listings;
   }
 
-  /** Get all listings filtered by title. */
-  static async getListingsBySearch(title) {
-    let res = await this.request(`listings/search?q=${title}`);
+  /** Get all listings filtered by location. */
+  static async getListingsBySearch(location) {
+    let res = await this.request(`listings?location=${location}`);
     return res.listings;
   }
 

@@ -30,7 +30,7 @@ function SearchForm({ search }) {
             type="text"
             value={searchTerm}
             className="form-control"
-            placeholder="Search listings by title"
+            placeholder="Search listings by location"
             aria-label="Search term"
             onChange={handleChange}
             aria-describedby="button-addon2"
