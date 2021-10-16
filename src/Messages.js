@@ -28,8 +28,6 @@ function Messages() {
     [currentUser]
   );
 
-  console.log(messages);
-
   if (isLoading) return <Loading />;
 
   return (

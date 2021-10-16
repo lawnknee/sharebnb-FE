@@ -50,7 +50,6 @@ export default function Conversation({ sendMessage }) {
 
   async function handleSubmit(evt) {
     evt.preventDefault();
-    console.log("evt", evt);
 
     let data = {
       ...formData,
@@ -60,7 +59,6 @@ export default function Conversation({ sendMessage }) {
 
     try {
       const newMessage = await sendMessage(data);
-      console.log("new message is", newMessage);
       setConversation((oldConversation) => [...oldConversation, newMessage]);
       setAlert(["Message sent!"]);
       for (let input of evt.target) {
@@ -72,8 +70,6 @@ export default function Conversation({ sendMessage }) {
   }
 
   if (isLoading) return <Loading />;
-
-  console.log("conversation => ", conversation);
 
   return (
     <div className="Conversation">

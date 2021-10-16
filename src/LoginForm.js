@@ -41,7 +41,6 @@ function LoginForm({ login }) {
       await login(formData);
       history.push("/listings");
     } catch (errs) {
-      console.log("errors is:", errs);
       setFormErrors([...errs]);
     }
   }

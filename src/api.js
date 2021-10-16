@@ -86,7 +86,6 @@ class SharebnbApi {
       { text },
       "post"
     );
-    console.log("res is", res.message);
     return res.message;
   }
 
@@ -99,7 +98,6 @@ class SharebnbApi {
   /** Get conversation messages between logged in user and other user. */
   static async getConversation(currentUser, otherUser) {
     let res = await this.request(`users/${currentUser}/messages/${otherUser}`);
-    console.log(res);
     return res.messages;
   }
 }
