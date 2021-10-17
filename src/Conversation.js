@@ -37,7 +37,7 @@ export default function Conversation({ sendMessage }) {
       }
       fetchConversation(otherUser);
     },
-    [conversation]
+    [conversation, currentUser.username, otherUser]
   );
 
   function handleChange(evt) {
