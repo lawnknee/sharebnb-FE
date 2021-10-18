@@ -73,6 +73,7 @@ function SignupForm({ register }) {
                 onChange={handleChange}
                 value={formData.password || ""}
                 aria-label="Password"
+                autoComplete="off"
               />
             </div>
             <div className="form-group mb-4">

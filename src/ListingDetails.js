@@ -52,10 +52,10 @@ function ListingDetails({ sendMessage }) {
 
     try {
       await sendMessage(data);
+      setAlert(["Message sent!"]);
     } catch (err) {
       setAlert(err);
     }
-    setAlert([...alert, "Message sent!"]);
   }
 
   function handleChange(evt) {
@@ -103,8 +103,6 @@ function ListingDetails({ sendMessage }) {
               >
                 Contact host
               </button>
-            
-            
             ) : (
               <Link to="/login" className="btn btn-primary">
                 Sign in to contact host
@@ -135,7 +133,10 @@ function ListingDetails({ sendMessage }) {
                     <div className="modal-body">
                       <form onSubmit={handleSubmit}>
                         <div className="mb-3">
-                          <label htmlFor="sender-name" className="col-form-label">
+                          <label
+                            htmlFor="sender-name"
+                            className="col-form-label"
+                          >
                             From:
                           </label>
                           <input

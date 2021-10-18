@@ -78,6 +78,7 @@ function LoginForm({ login }) {
                 onChange={handleChange}
                 value={formData.password || ""}
                 aria-label="Password"
+                autoComplete="off"
               />
             </div>
 
